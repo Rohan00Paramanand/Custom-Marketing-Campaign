@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model</title>
+    <!--Bootstrap JS-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        //Mapping values so that dropdown list displays the actual names instead of the integers
+        const mappings = {
+            target_audience: {
+                0: 'All Ages',
+                1: 'Men 18-24',
+                2: 'Men 25-34',
+                3: 'Women 25-34',
+                4: 'Women 35-44'
+            },
+            channel_used: {
+                0: 'Email',
+                1: 'Facebook',
+                2: 'Google Ads',
+                3: 'Instagram',
+                4: 'Website',
+                5: 'YouTube'
+            }
+        };
+        //Populating the dropdown list with mapped values once the page loads
+        window.onload = function() {
+            const populate = (id, data) => {
+                const select = document.getElementById(id);
+                Object.keys(data).forEach(key => {
+                    const option = document.createElement('option');
+                    option.value = key;
+                    option.text = data[key];
+                    select.add(option);
+                });
+            };
+
+            populate('target_audience', mappings.target_audience);
+            populate('channel_used', mappings.channel_used);
+        };
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Customized Marketing Campaign</h1>
+        <div class="container mt-5 p-4 border rounded">
+            <form action="/predict" method="POST" class="form-group mt-4">
+                <div class="form-group">
+                    <label for="target_audience">Target Audience</label>
+                    <select name="target_audience" id="target_audience" class="form-control">
+                        <!--Options come here-->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="channel_used">Channel Used</label>
+                    <select name="channel_used" id="channel_used" class="form-control">
+                        <!--Options come here-->
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Predict</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
