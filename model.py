@@ -1,9 +1,8 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, LabelEncoder
+from sklearn.preprocessing import LabelEncoder
 import joblib
-import json
 
 def train_model():
     df = pd.read_csv('datasets/marketing_campaign_dataset.csv') #Load dataset
